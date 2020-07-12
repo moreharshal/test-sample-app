@@ -1,5 +1,6 @@
 pipeline {
-    any{
+    agent any
+
         stages {
             stage('pull') {
                 steps {
@@ -12,5 +13,5 @@ pipeline {
                 }
             }
         }
-    }
+
 }
