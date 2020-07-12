@@ -1,17 +1,12 @@
 pipeline {
     agent any
 
-        stages {
-            stage('pull') {
-                steps {
-                    git clone
-                }
+        stage('build') {
+            steps {
+            withMaven(maven: 'maven-3.5.3'){
+              cmd 'mvn clean'
             }
-            stage('build') {
-                steps {
-                   mvn clean
-                }
             }
         }
+ }
 
-}
