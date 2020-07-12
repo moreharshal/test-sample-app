@@ -27,9 +27,16 @@ pipeline {
              steps {
                  withMaven(maven: 'maven-3.5.3'){
                    bat 'mvn sonar:sonar -Dsonar.projectKey=MySampleJenkinTest -Dsonar.host.url=http://localhost:9000 -Dsonar.login=06fb912bb2be9bff756b94320131ab3b1c768a76'
+                    timeout(time: 1, unit: 'HOURS') {
+                    def qg = waitForQualityGate()
+                        if (qg.status != 'OK') {
+                            error "Pipeline aborted due to quality gate failure: ${qg.status}"
+                        }
+                    }
                  }
              }
          }
+
     }
  }
 
