@@ -1,0 +1,16 @@
+pipeline {
+    any{
+        stages {
+            stage('pull') {
+                steps {
+                    git clone
+                }
+            }
+            stage('build') {
+                steps {
+                   mvn clean
+                }
+            }
+        }
+    }
+}
